@@ -35,7 +35,7 @@ class Command(BaseCommand):
             chat_id = update.effective_chat.id
 
             # Путь к локальному mp4 с колесом загрузки
-            loading_video_path = Path('mail-download.mp4')  # Обернули строку в Path
+            loading_video_path = Path('loading.mp4')  # Обернули строку в Path
 
             sent_message = await context.bot.send_video(
                 chat_id=chat_id,
@@ -63,6 +63,14 @@ class Command(BaseCommand):
                     await update.message.reply_text(prediction.text)
             else:
                 await update.message.reply_text("Предсказаний пока нет.")
+
+            # Путь к локальному mp4 с колесом загрузки
+            loading_video_path = Path('mail-download.mp4')  # Обернули строку в Path
+
+            sent_message = await context.bot.send_video(
+                chat_id=chat_id,
+                video=loading_video_path.open('rb')  # Теперь можно вызвать open
+            )
 
         # Вставь сюда свой токен бота
         bot_token = '7799746443:AAFrPPvydjcJ81B9MsbXWgvgTbP94X6-geQ'
